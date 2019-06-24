@@ -7,7 +7,9 @@ import java.util.ListIterator;
 
 public class Tree <T extends Comparable<T>>{ //implements List{
 	private Branch root;
-	
+	public Tree()
+	{
+	}
 	public void add(T arg0) {
 		// TODO Auto-generated method stub
 		
@@ -50,7 +52,7 @@ public class Tree <T extends Comparable<T>>{ //implements List{
 		{
 			return false;	
 		}
-		root.remove(o);
+		return root.remove(o);
 			
 		
 	}
