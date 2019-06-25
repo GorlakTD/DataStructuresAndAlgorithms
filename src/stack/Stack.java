@@ -2,19 +2,29 @@ package stack;
 
 import java.util.LinkedList;
 
-public class Stack<T extends Comparable<T>>   {
-	private LinkedList<T> ref = new LinkedList<T>();
+public class Stack   {
+	Object[] ref = new Object[0]; 
 	public Stack()
 	{
 		
 	}
-	public void push(T obj)
+	public void push(Object obj)
 	{
-		ref.add(obj);
+		Object[] temp = new Object[ref.length + 1];
+		for(int i = 0; i < ref.length; i++)
+		{
+			temp[i] = 
+		}
 	}
-	public T pop()
+	public Object pop()
 	{
-		return ref.removeLast();
+		Object[] temp = new Object[ref.length - 1];
+		Object obj = ref[0]
+		for(Object x : ref)
+		{
+			temp.
+		}
+		
 	}
 	
 }
