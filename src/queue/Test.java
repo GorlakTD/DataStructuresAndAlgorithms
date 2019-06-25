@@ -3,7 +3,7 @@ package queue;
 public class Test {
 	public static void main(String args[])
 	{
-	Queue<Integer> q = new Queue<Integer>();
+	Queue q = new Queue();
 	q.push(5);
 	q.push(6);
 	q.push(4);

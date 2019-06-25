@@ -1,29 +1,23 @@
 package stack;
 
-import java.util.LinkedList;
-
 public class Stack   {
-	Object[] ref = new Object[0]; 
-	public Stack()
-	{
-		
-	}
+	private Object[] ref = new Object[4096]; 
+	private int lastIndex = 0;
 	public void push(Object obj)
 	{
-		Object[] temp = new Object[ref.length + 1];
-		for(int i = 0; i < ref.length; i++)
-		{
-			temp[i] = 
-		}
+		if(ref[4095] != null)
+			return;
+		ref[lastIndex] = obj;
+		lastIndex = lastIndex + 1;	
 	}
 	public Object pop()
 	{
-		Object[] temp = new Object[ref.length - 1];
-		Object obj = ref[0]
-		for(Object x : ref)
-		{
-			temp.
-		}
+		lastIndex = lastIndex - 1;
+		if(lastIndex < 0)
+			return null; 
+		Object obj = ref[lastIndex];
+		ref[lastIndex] = null;
+		return obj;
 		
 	}
 	
