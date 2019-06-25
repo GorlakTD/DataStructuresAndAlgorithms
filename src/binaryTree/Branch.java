@@ -49,7 +49,7 @@ public class Branch<T extends Comparable<T>> {
 		}
 		return true;
 	}
-	
+
 	public void add(T arg0) 
 	{
 		if(val.compareTo(arg0) >= 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
@@ -96,7 +96,7 @@ public class Branch<T extends Comparable<T>> {
 			try
 			{
 				return left.find(arg0);
-				
+
 			}
 			catch(NullPointerException e)
 			{
@@ -150,45 +150,17 @@ public class Branch<T extends Comparable<T>> {
 		}
 		return null;
 	}
+	@SuppressWarnings("unchecked")
 	public Branch remove(T arg0) //returns the modified branch, not the whole tree.
 	{
-		Branch<T> br;
-		
-		if(val.compareTo(arg0) > 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
-		{
-			br = this.getLeft();
-			if(br.getVal().equals(arg0))
-			{
-		
-				if(!(br.hasRight()) && !(br.hasLeft()))
-				{
-					this.setLeft(null);
-				}
-				if(br.hasLeft() && !br.hasRight())
-				{
-					this.setLeft(br.getLeft());
-				}
-				if(br.hasRight() && !br.hasLeft())
-				{
-					this.setLeft(br.getRight());
-				}
-				if(br.hasLeft() && br.hasRight())
-				{
-					Branch c = new Branch(this.hooBoyHereWeGo(br));
-					c.setLeft(br.getLeft());
-					c.setRight(br.getRight());
-					this.setLeft(c);
-				}
-			}
-			else
-				return left.remove(arg0);
-		}
-		if(val.compareTo(arg0) < 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
+		Branch<T> br; //= this;
+
+		if(val.compareTo(arg0) <= 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
 		{
 			br = this.getRight();
+
 			if(br.getVal().equals(arg0))
 			{
-		
 				if(!(br.hasRight()) && !(br.hasLeft()))
 				{
 					this.setRight(null);	
@@ -206,12 +178,44 @@ public class Branch<T extends Comparable<T>> {
 					Branch c = new Branch(this.hooBoyHereWeGo(br));
 					c.setLeft(br.getLeft());
 					c.setRight(br.getRight());
+					c = c.remove(c.getVal());
 					this.setRight(c);
 				}
 			}
-			else
-				return right.remove(arg0);
 		}
+		else if(val.compareTo(arg0) > 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
+		{
+			br = this.getLeft();
+			if(br.getVal().equals(arg0))
+			{
+
+				if(!(br.hasRight()) && !(br.hasLeft()))
+				{
+					this.setLeft(null);
+				}
+				if(br.hasLeft() && !br.hasRight())
+				{
+					this.setLeft(br.getLeft());
+				}
+				if(br.hasRight() && !br.hasLeft())
+				{
+					this.setLeft(br.getRight());
+				}
+				if(br.hasLeft() && br.hasRight())
+				{
+					Branch c = new Branch(this.hooBoyHereWeGo(br));
+					c.setLeft(br.getLeft());
+					c.setRight(br.getRight());
+					c = c.remove(c.getVal());
+					this.setLeft(c);
+				}
+			}
+			else
+				this.setLeft(left.remove(arg0));
+		}
+		else
+			this.setRight(right.remove(arg0));
+
 		return this;
 	}
 	private T hooBoyHereWeGo(Branch br)
