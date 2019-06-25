@@ -46,15 +46,13 @@ public class Tree <T extends Comparable<T>>{ //implements List{
 		return false;
 	}
 
-	public boolean remove(T o) {
+	public void remove(T o) {
 		// TODO Auto-generated method stub
 		if(!(this.contains(o)))
 		{
-			return false;	
+			return;
 		}
-		return root.remove(o);
-			
-		
+		root = root.remove(o);
 	}
 
 	public int size() {

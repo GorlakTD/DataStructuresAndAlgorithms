@@ -150,48 +150,69 @@ public class Branch<T extends Comparable<T>> {
 		}
 		return null;
 	}
-	public boolean remove(T arg0) //returns the branch, not the whole tree.
+	public Branch remove(T arg0) //returns the modified branch, not the whole tree.
 	{
 		Branch<T> br;
+		
 		if(val.compareTo(arg0) > 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
 		{
-			left.remove(arg0);
-			
+			br = this.getLeft();
+			if(br.getVal().equals(arg0))
+			{
+		
+				if(!(br.hasRight()) && !(br.hasLeft()))
+				{
+					this.setLeft(null);
+				}
+				if(br.hasLeft() && !br.hasRight())
+				{
+					this.setLeft(br.getLeft());
+				}
+				if(br.hasRight() && !br.hasLeft())
+				{
+					this.setLeft(br.getRight());
+				}
+				if(br.hasLeft() && br.hasRight())
+				{
+					Branch c = new Branch(this.hooBoyHereWeGo(br));
+					c.setLeft(br.getLeft());
+					c.setRight(br.getRight());
+					this.setLeft(c);
+				}
+			}
+			else
+				return left.remove(arg0);
 		}
 		if(val.compareTo(arg0) < 0) // arg0 > val :: -1 | arg0 = val :: 0 | arg0 < val :: 1
 		{
-			right.remove(arg0);	
-		}
-		if(!(this.hasRight()) && !(this.hasLeft()))
-		{
-			this.setVal(null);
-			return true;
-		}
-		if(this.hasRight() && !(this.hasLeft()))
-		{
 			br = this.getRight();
-			this.setVal(br.getVal());
-			this.setLeft(br.getLeft());
-			this.setRight(br.getRight());
-			return true;
+			if(br.getVal().equals(arg0))
+			{
+		
+				if(!(br.hasRight()) && !(br.hasLeft()))
+				{
+					this.setRight(null);	
+				}
+				if(br.hasLeft() && !br.hasRight())
+				{
+					this.setRight(br.getLeft());
+				}
+				if(br.hasRight() && !br.hasLeft())
+				{
+					this.setRight(br.getRight());
+				}
+				if(br.hasLeft() && br.hasRight())
+				{
+					Branch c = new Branch(this.hooBoyHereWeGo(br));
+					c.setLeft(br.getLeft());
+					c.setRight(br.getRight());
+					this.setRight(c);
+				}
+			}
+			else
+				return right.remove(arg0);
 		}
-		if(this.hasLeft() && !(this.hasRight()))
-		{
-			br = this.getLeft();
-			this.setVal(br.getVal());
-			this.setLeft(br.getLeft());
-			this.setRight(br.getRight());
-			return true;
-		}
-		if(this.hasLeft() && this.hasRight())
-		{
-			br = new Branch(this.hooBoyHereWeGo(this.getLeft()));
-			br.setLeft(this.getLeft());
-			br.setRight(this.getRight());
-			this.setVal(br.getVal());
-			return true;
-		}
-		return false;
+		return this;
 	}
 	private T hooBoyHereWeGo(Branch br)
 	{

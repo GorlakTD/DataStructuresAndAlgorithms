@@ -8,12 +8,12 @@ public class Test {
 		for(int i = 0; i < 10; i++)
 		{
 			tr.add(i);
-			//tr.add((int) (Math.random()*100) - 50);
+			tr.add((int) (Math.random()*10) - 20);
 		}
 		//tr.add(3);
 		//tr.add(13);
 		//tr.add(-33);
-		System.out.println(tr.remove(3));
+		tr.remove(3);
 	}
 
 }
