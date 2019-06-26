@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Graph<T extends Comparable<T>> {
 	private ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+	
 	public Graph(Vertex v)
 	{
 		vertices.add(v);

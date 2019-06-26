@@ -20,5 +20,13 @@ public class Stack   {
 		return obj;
 		
 	}
+	public boolean isEmpty()
+	{
+		if (lastIndex == 0)
+		{
+			return true;
+		}
+		return false;
+	}
 	
 }

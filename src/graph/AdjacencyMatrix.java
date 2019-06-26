@@ -4,36 +4,39 @@ import java.util.ArrayList;
 
 
 public class AdjacencyMatrix {
-	public static void GenerateMatrix(Graph g)
+	public static void PrintMatrix(Object[][] obj)
 	{
-		ArrayList<Vertex> vertices = g.getVertices();
-		System.out.print("  ");
-		for(Vertex v : vertices)
+		for(int i = 0; i < obj.length; i++)
 		{
-			System.out.print(v.getID() + " ");
-		}
-		System.out.println();
-		for(Vertex v : vertices)
-		{
-			System.out.print(v.getID() + " ");
-
-			for(int i = 0; i < vertices.size()- 1; i++)
+			for(int k = 0; k < obj.length; k++)
 			{
-				if(v.getID() == i)
-					System.out.print("0 ");
-				try {
-					System.out.print(((Edge)(v.getEdges().get(i))).getValue() + " " );
-				}
-				catch(IndexOutOfBoundsException E)
-				{
-					System.out.print("0 ");
-				}
+				System.out.print(obj[i][k] + " ");
 			}
 			System.out.println();
 		}
-		System.out.println();
 	}
-	
+	public static Object[][] GenerateMatrix(ArrayList<Vertex> vertices)
+	{
+		Object[][] Matrix = new Object[vertices.size()][vertices.size()];
+		for(int i = 0; i < vertices.size(); i++)
+		{
+			
+			for(int k = 0; k < vertices.size(); k++)
+			{
+				try
+				{
+					Matrix[i][k] = (vertices.get(i).getEdge(k).getValue());
+				}
+				catch(NullPointerException e)
+				{
+					Matrix[i][k] = 0;
+				}
+				Matrix[k][i] = Matrix[i][k];
+			}	
+			Matrix[i][i] = 0;
+		}
+		return Matrix;
+	}
 	public static void main(String args[])
 	{
 		Vertex v = new Vertex(0,0);
@@ -45,6 +48,8 @@ public class AdjacencyMatrix {
 		g.addVertex(v,0,1);
 		g.connectVertex(1,3,1);
 		g.connectVertex(5,2,3);
-		GenerateMatrix(g);
+		g.connectVertex(3,4,'l');
+		
+		PrintMatrix(GenerateMatrix(g.getVertices()));
 	}
 }
