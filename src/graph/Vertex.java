@@ -1,11 +1,11 @@
 package graph;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 @SuppressWarnings("rawtypes")
 public class Vertex<T extends Comparable> {
 	private boolean visited;
-	private ArrayList<Edge> edges = new ArrayList<Edge>();
+	private LinkedList<Edge> edges = new LinkedList<Edge>();
 	private T obj;
 	private int id;
 	public Vertex(T arg0, int id)
@@ -21,7 +21,7 @@ public class Vertex<T extends Comparable> {
 	{
 		return this.id;
 	}
-	public ArrayList<Edge> getEdges()
+	public LinkedList<Edge> getEdges()
 	{
 		return this.edges;
 	}
@@ -38,8 +38,9 @@ public class Vertex<T extends Comparable> {
 		}
 		return null;
 	}
-	public void add(Vertex vert, T val)
+	
+	public void add(Vertex<T> vert, T val)
 	{
-		edges.add(new Edge(this, vert, val));
+		edges.add(new Edge<T>(this, vert, val));
 	}
 }

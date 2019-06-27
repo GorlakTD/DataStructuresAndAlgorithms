@@ -6,6 +6,10 @@ public class PostFixEvaluator {
 	{
 		sequence = str;
 	}
+	public int evaluate(String str)
+	{
+		char[] sequence = str.toCharArray();
+		return 0;
+	}
 	
-
 }
