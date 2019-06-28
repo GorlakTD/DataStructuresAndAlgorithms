@@ -2,6 +2,8 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.Stack;
 
 public class Graph<T extends Comparable<T>> {
 	private LinkedList<Vertex> vertices = new LinkedList<Vertex>();
@@ -55,34 +57,46 @@ public class Graph<T extends Comparable<T>> {
 		return null;
 	}
 	//bread first search
-	public void BFSearch(T obj) //visits all the children
+	public String BFSearch(T obj) //visits all the children
 	{
-		retrieveBF(obj, (Edge)(vertices.getFirst().getEdges().getFirst()));
+		Stack<Integer> st = new Stack();
+		for(int i = 0; i < vertices.size(); i++)
+		{
+			st.push(i);
+		}
+		st.push(retrieveBF((vertices.get(0)), st));
+		return st.toString();
 	}
 	//retrieve in a breadly manner
-	public int retrieveBF(T target, Edge e)
+	public Integer retrieveBF(Vertex vert, Stack<Integer> st)
 	{
-		try {
-			retrieveBF(target, ((Edge)(vertices.getFirst().getEdges().pop())));
-		}
-		catch(NullPointerException N)
+		for(int k = 0; k < vertices.size(); k++)
 		{
-			System.out.println("matt is dummy thicc");
-		}
-		finally
-		{
-			if(vertices.getFirst().getValue().equals(target))
-			{
-				return vertices.getFirst().getID();
+			/*for(int j = 0; j < vertices.get(k).getEdges().size(); j++)
+				{
+					if (!vert.get.isTraversed())
+					{
+						break;
+					}
+				}*/
+			//else if(this.getEdge(i, k) != null && vertices.get(i).getEdge(k).isTraversed() == false);
+			//{
+			/*else */
+			if(vert.getEdge(k) != null && vert.getEdge(k).isTraversed() == false)
+			{				
+				vert.getEdge(k).setTraversed();
+				st.push(retrieveBF(vert.getEdge(k).getVertex(vert.getID()),st));
+				//return st.push(retrieveBF(vert.getEdge(k).getVertex(vert.getID()),st));
 			}
+				return st.push(retrieveBF(vert,st));
 		}
-		return -1;
-		
+		return st.pop();
 	}
+
 	//depth first search
 	public void DFSearch() //goes to the end of the path
 	{
-		
+
 	}
 	//retrieve in a depthly manner
 	public void retrieveDF(Vertex vert, boolean[] visited)

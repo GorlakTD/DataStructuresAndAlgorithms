@@ -1,11 +1,12 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class AdjacencyList {
-	public static ArrayList<String> GenerateList(ArrayList<Vertex> vertices)
+	public static LinkedList<String> GenerateList(LinkedList<Vertex> vertices)
 	{
-		ArrayList<String> list= new ArrayList<String>();
+		LinkedList<String> list= new LinkedList<String>();
 		for(int i = 0; i < vertices.size(); i++)
 		{
 			for(int k = i + 1; k < vertices.size(); k++)
@@ -23,7 +24,7 @@ public class AdjacencyList {
 		}
 		return list;
 	}
-	public static void PrintList(ArrayList<String> vertices)
+	public static void PrintList(LinkedList<String> vertices)
 	{
 		for (int i = 0; i < vertices.size(); i++)
 		{

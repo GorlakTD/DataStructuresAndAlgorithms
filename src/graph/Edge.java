@@ -2,7 +2,8 @@ package graph;
 
 @SuppressWarnings("rawtypes")
 public class Edge<T extends Comparable> {
-	Vertex[] vertices = new Vertex[2];
+	Vertex[] vertices   = new Vertex[2];
+	boolean visited		= false;
 	T value;
 	public Edge(Vertex<T> arg0, Vertex<T> arg1, T val)
 	{
@@ -38,5 +39,13 @@ public class Edge<T extends Comparable> {
 	public void setValue(T arg0)
 	{
 		this.value = arg0;
+	}
+	public boolean isTraversed()
+	{
+		return visited;
+	}
+	public void setTraversed()
+	{
+		visited = !visited;
 	}
 }

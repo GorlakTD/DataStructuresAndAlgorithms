@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class AdjacencyMatrix {
@@ -15,7 +16,7 @@ public class AdjacencyMatrix {
 			System.out.println();
 		}
 	}
-	public static Object[][] GenerateMatrix(ArrayList<Vertex> vertices)
+	public static Object[][] GenerateMatrix(LinkedList<Vertex> vertices)
 	{
 		Object[][] Matrix = new Object[vertices.size()][vertices.size()];
 		for(int i = 0; i < vertices.size(); i++)

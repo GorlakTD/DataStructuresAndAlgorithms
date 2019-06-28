@@ -43,4 +43,8 @@ public class Vertex<T extends Comparable> {
 	{
 		edges.add(new Edge<T>(this, vert, val));
 	}
+	public void setVisited()
+	{
+		visited = !visited;
+	}
 }
